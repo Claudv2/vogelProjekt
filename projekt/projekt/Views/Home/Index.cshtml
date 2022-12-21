@@ -1,18 +1,23 @@
 ﻿<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../Content/style.css">
+<script src="https://kit.fontawesome.com/7bdc781c6b.js" crossorigin="anonymous"></script>
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Zugskompositionen";
 }
 
-<div class="jumbotron">
-    <h1>Home</h1>
+
+
+<div class="titel">
+    <h1>Alle Zugskompositionen</h1>
 </div>
 
 <div class="row">
     <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Rollmaterial</th>
+        <tr class="table-head">
+            <th>Benutzer</th>
+            <th>Zugname</th>
+            <th>Anzahl Rollmaterialien</th>
             <th></th>
         </tr>
         @foreach (var item in Model)
@@ -20,8 +25,11 @@
             <tr>
                 <td>@item.id</td>
                 <td>@item.locke</td>
-                <td>
-                    <button class="openModalButton btn btn-primary">Details</button>
+                <td>@item.locke</td>
+                <td class="d-flex">
+                    <button class="button openModalButton"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="button openModalButton btn btn-primary"><i class="fa-regular fa-bookmark"></i></button>
+                    <button class="button openModalButton btn btn-primary"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
             </tr>
         }
