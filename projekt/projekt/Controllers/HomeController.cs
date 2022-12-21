@@ -26,7 +26,7 @@ namespace projekt.Controllers
             return View();
         }
 
-        public ActionResult Zugskompositionen()
+        public ActionResult Rollmaterial()
         {
             // Retrieve data from tables and create list of MyModel objects
             var data = new List<Zugskompositionen> {

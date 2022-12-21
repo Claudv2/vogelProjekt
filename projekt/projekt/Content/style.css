@@ -1,0 +1,19 @@
+﻿.titel {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.table {
+    background: #2c2c2c;
+    color: white;
+}
+
+.table-head {
+    background: #383838;
+}
+
+.button {
+    background: none;
+    border: none;
+}
