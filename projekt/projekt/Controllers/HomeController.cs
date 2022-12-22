@@ -42,5 +42,10 @@ namespace projekt.Controllers
         {
             return RedirectToAction("Index");
         }
+
+        public ActionResult Profile(int id)
+        {
+            return View();
+        }
     }
 }
