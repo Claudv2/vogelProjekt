@@ -4,11 +4,8 @@
     "\\projekt",
     "\\projekt\\Content",
     "\\projekt\\Views",
-    "\\projekt\\Views\\Home"
-  ],
-  "SelectedNode": "\\projekt\\Views\\Home\\Index.cshtml",
-    "\\projekt\\Views",
-    "\\projekt\\Views\\Home"
+    "\\projekt\\Views\\Home",
+    "\\projekt\\Views\\Shared"
   ],
   "SelectedNode": "\\projekt.sln",
   "PreviewInSolutionExplorer": false
