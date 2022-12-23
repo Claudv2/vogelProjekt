@@ -38,7 +38,7 @@
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr id="data-userverwaltung">
                 <td>@item.id</td>
                 <td>@item.name</td>
                 <td>@item.rollmaterial.Count</td>
@@ -73,17 +73,17 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Bezeichung</td>
-                            <td>@item.Farbe</td>
-                            <td>@item.ImBesitz</td>
-                            <td>@item.Hersteller</td>
+                            <td>@item.id</td>
+                            <td>@item.name</td>
+                            <td>@item.rollmaterial.Count</td>
+                            <td>@item.id</td>
                         </tr>
                     }
                 </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Speichern</button>
+                <button type="button" onclick="addClass()" class="btn btn-secondary" data-dismiss="modal">Speichern</button>
             </div>
         </div>
     </div>
@@ -215,6 +215,12 @@
         $('.deleteItem').click(function () {
             document.getElementById(Id).setAttribute('hidden', "");
         });
+
+        function addClass() {
+            var element = document.getElementById("data-userverwaltung");
+
+            element.classList.add("disable-row");
+        }
     });
  
 </script>
