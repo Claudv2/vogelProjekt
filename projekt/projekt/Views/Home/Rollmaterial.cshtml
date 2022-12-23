@@ -2,13 +2,28 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../Content/style.css">
 <script src="https://kit.fontawesome.com/7bdc781c6b.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/JavaScript.js"></script>
+
 
 
 <div class="titel">
     <h1>Alle Rollmaterialien</h1>
 </div>
 
-<button class="button buttonAdd openModalButton btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+<div class="add-data">
+    <button class="add-button openAddModalButton">
+        <i class="fa-regular fa-plus"></i>
+    </button>
+</div>
+
+<div class="mode">
+    <button class="add-button" id="mode">
+        <i class="fa-solid fa-sun"></i>
+    </button>
+</div>
 
 <table class="table">
     <tr>
@@ -20,44 +35,226 @@
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.Bezeichung</td>
-            <td>@item.Farbe</td>
-            <td>@item.ImBesitz</td>
-            <td>@item.Hersteller</td>
+        <tr id="@item.id">
+            <td id="bezeichungOutput @item.id">@item.Bezeichung</td>
+            <td id="farbeOutput @item.id">@item.Farbe</td>
+            <td id="imBesitzOutput @item.id">@item.ImBesitz</td>
+            <td id="herstellerOutput @item.id">@item.Hersteller</td>
             <td>
-                <button class="button openModalButton btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></button>
-                <button class="button openModalButton btn btn-primary"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="icon-button openModalButton" data-id="@item.id"><i class="fa-regular fa-pen-to-square"></i></button>
+                <button class="icon-button openDeleteModalButton" data-id="@item.id"><i class="fa-solid fa-trash-can"></i></button>
             </td>
+            <td hidden id="typeOutput @item.id">@item.Type</td>
+            <td hidden id="kaufpreisOutput @item.id">@item.Kaufpreis</td>
+            <td hidden id="verkaeuferOutput @item.id">@item.Verkaeufer</td>
+            <td hidden id="schaetzpreisOutput @item.id">@item.Schaetzpreis</td>
+            <td hidden id="loknummerOutput @item.id">@item.Loknummer</td>
+            <td hidden id="artNrOutput @item.id">@item.ArtNr</td>
+            <td hidden id="setNrOutput @item.id">@item.SetNr</td>
+            <td hidden id="bemerkungOutput @item.id">@item.Bemerkung</td>
+            <td hidden id="bahngesellschaftOutput @item.id">@item.Bahngesellschaft</td>
+            <td hidden id="loktypOutput @item.id">@item.Loktyp</td>
+            <td hidden id="veroeffentlichungOutput @item.id">@item.Veroeffentlichung</td>
         </tr>
     }
 </table>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel">Zugskomposition bearbeiten/ Details</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formAddRollmaterial">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="typeEdit" class="input-text" type="text" placeholder="Typ" />
+
+                        <input id="imBesitzEdit" class="input-text" type="text" placeholder="Im Besitz" />
+
+                        <input id="kaufpreisEdit" class="input-text" type="text" placeholder="Kaufpreis" />
+
+                        <input id="verkaeuferEdit" class="input-text" type="text" placeholder="Verkäufer" />
+
+                        <input id="schaetzpreisEdit" class="input-text" type="text" placeholder="Schätzpreis" />
+                    </div>
+
+                    <div class="form-group">
+                        <input id="herstellerEdit" class="input-text" type="text" placeholder="Hersteller" />
+
+                        <input id="artnrEdit" class="input-text" type="text" placeholder="ArtNr" />
+
+                        <input id="setnrEdit" class="input-text" type="text" placeholder="SetNr" />
+
+                        <input id="bezeichnungEdit" class="input-text" type="text" placeholder="Bezeichnung" />
+
+                        <input id="bemerkungEdit" class="input-text" type="text" placeholder="Bemerkung" />
+                    </div>
+                    <div class="form-group">
+                        <input id="farbeEdit" class="input-text" type="text" placeholder="Farbe" />
+
+                        <input id="bahngesellschaftEdit" class="input-text" type="text" placeholder="Bahngesellschaft" />
+
+                        <input id="loktypEdit" class="input-text" type="text" placeholder="Loktyp" />
+
+                        <input id="loknummerEdit" class="input-text" type="text" placeholder="Loknummer" />
+
+                        <input id="veroeffentlichungEdit" class="input-text" type="text" placeholder="Veröffentlichung" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default cancel-modal-button" data-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-default submitEdit" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add Content Modal -->
+<div class="modal fade" id="addContentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel">Zugskomposition hinzufügen</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formAddRollmaterial">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="type" class="input-text" type="text" placeholder="Typ" />
+
+                        <input id="imBesitz" class="input-text" type="text" placeholder="Im Besitz" />
+
+                        <input id="kaufpreis" class="input-text" type="text" placeholder="Kaufpreis" />
+
+                        <input id="verkaeufer" class="input-text" type="text" placeholder="Verkäufer" />
+
+                        <input id="schaetzpreis" class="input-text" type="text" placeholder="Schätzpreis" />
+                    </div>
+
+                    <div class="form-group">
+                        <input id="hersteller" class="input-text" type="text" placeholder="Hersteller" />
+
+                        <input id="artnr" class="input-text" type="text" placeholder="ArtNr" />
+
+                        <input id="setnr" class="input-text" type="text" placeholder="SetNr" />
+
+                        <input id="bezeichnung" class="input-text" type="text" placeholder="Bezeichnung" />
+
+                        <input id="bemerkung" class="input-text" type="text" placeholder="Bemerkung" />
+                    </div>
+                    <div class="form-group">
+                        <input id="farbe" class="input-text" type="text" placeholder="Farbe" />
+
+                        <input id="bahngesellschaft" class="input-text" type="text" placeholder="Bahngesellschaft" />
+
+                        <input id="loktyp" class="input-text" type="text" placeholder="Loktyp" />
+
+                        <input id="loknummer" class="input-text" type="text" placeholder="Loknummer" />
+
+                        <input id="veroeffentlichung" class="input-text" type="text" placeholder="Veröffentlichung" />
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" class="btn btn-default cancel-modal-button" data-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Content Modal -->
+<div class="modal fade" id="deleteContentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Modal Title</h5>
+                <h2 class="modal-title" id="myModalLabel">Zugskomposition löschen</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Modal content goes here.
+                Diesen Datensatz löschen?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary cancel-modal-button" data-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn btn-secondary submit-modal-button deleteItem"  data-dismiss="modal">Ok</button>
             </div>
-        </div>
+        </div>  
     </div>
 </div>
 
+
 <script>
     $(document).ready(function () {
+        var Id = null;
         $('.openModalButton').click(function () {
+            Id = $(this).data('id');
             $('#myModal').modal('show');
+            var tr = document.getElementById(Id);
+            console.log(document.getElementById('typeEdit'))
+            console.log(document.getElementById('typeOutput ' + Id).innerText)
+            document.getElementById('typeEdit').setAttribute('value', document.getElementById('typeOutput ' + Id).innerText)
+            document.getElementById('imBesitzEdit').setAttribute('value', document.getElementById('imBesitzOutput ' + Id).innerText)
+            document.getElementById('kaufpreisEdit').setAttribute('value', document.getElementById('kaufpreisOutput ' + Id).innerText)
+            document.getElementById('verkaeuferEdit').setAttribute('value', document.getElementById('verkaeuferOutput ' + Id).innerText)
+            document.getElementById('schaetzpreisEdit').setAttribute('value', document.getElementById('schaetzpreisOutput ' + Id).innerText)
+            document.getElementById('herstellerEdit').setAttribute('value', document.getElementById('herstellerOutput ' + Id).innerText)
+            document.getElementById('artnrEdit').setAttribute('value', document.getElementById('artNrOutput ' + Id).innerText)
+            document.getElementById('setnrEdit').setAttribute('value', document.getElementById('setNrOutput ' + Id).innerText)
+            document.getElementById('bezeichnungEdit').setAttribute('value', document.getElementById('bezeichungOutput ' + Id).innerText)
+            document.getElementById('bemerkungEdit').setAttribute('value', document.getElementById('bemerkungOutput ' + Id).innerText)
+            document.getElementById('farbeEdit').setAttribute('value', document.getElementById('farbeOutput ' + Id).innerText)
+            document.getElementById('bahngesellschaftEdit').setAttribute('value', document.getElementById('bahngesellschaftOutput ' + Id).innerText)
+            document.getElementById('loktypEdit').setAttribute('value', document.getElementById('loktypOutput ' + Id).innerText)
+            document.getElementById('loknummerEdit').setAttribute('value', document.getElementById('loknummerOutput ' + Id).innerText)
+            document.getElementById('veroeffentlichungEdit').setAttribute('value', document.getElementById('veroeffentlichungOutput ' + Id).innerText)
+
+        });
+
+
+        $('.submitEdit').click(function () {
+            console.log(document.getElementById('typeEdit').value)
+            document.getElementById('typeOutput ' + Id).innerHTML = document.getElementById('typeEdit').value
+            document.getElementById('imBesitzOutput ' + Id).innerHTML = document.getElementById('imBesitzEdit').value
+            document.getElementById('kaufpreisOutput ' + Id).innerHTML = document.getElementById('kaufpreisEdit').value
+            document.getElementById('verkaeuferOutput ' + Id).innerHTML = document.getElementById('verkaeuferEdit').value
+            document.getElementById('schaetzpreisOutput ' + Id).innerHTML = document.getElementById('schaetzpreisEdit').value
+            document.getElementById('herstellerOutput ' + Id).innerHTML = document.getElementById('herstellerEdit').value
+            document.getElementById('artNrOutput ' + Id).innerHTML = document.getElementById('artnrEdit').value
+            document.getElementById('setNrOutput ' + Id).innerHTML = document.getElementById('setnrEdit').value
+            document.getElementById('bezeichungOutput ' + Id).innerHTML = document.getElementById('bezeichnungEdit').value
+            document.getElementById('bemerkungOutput ' + Id).innerHTML = document.getElementById('bemerkungEdit').value
+            document.getElementById('farbeOutput ' + Id).innerHTML = document.getElementById('farbeEdit').value
+            document.getElementById('bahngesellschaftOutput ' + Id).innerHTML = document.getElementById('bahngesellschaftEdit').value
+            document.getElementById('loktypOutput ' + Id).innerHTML = document.getElementById('loktypEdit').value
+            document.getElementById('loknummerOutput ' + Id).innerHTML = document.getElementById('loknummerEdit').value
+            document.getElementById('veroeffentlichungOutput ' + Id).innerHTML = document.getElementById('veroeffentlichungEdit').value
+        });
+
+        $('.openAddModalButton').click(function () {
+            $('#addContentModal').modal('show');
+        });
+
+        $('.openDeleteModalButton').click(function () {
+            Id = $(this).data('id');
+            $('#deleteContentModal').modal('show');
+        });
+
+        $('.deleteItem').click(function () {
+            document.getElementById(Id).setAttribute('hidden', "");
         });
     });
+
+
 </script>

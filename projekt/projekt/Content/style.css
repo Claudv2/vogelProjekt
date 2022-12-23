@@ -61,3 +61,6 @@
 .navigation:active {
     background: grey;
 }
+.label-color {
+    color: #2c2c2c;
+}
