@@ -1,6 +1,7 @@
 ﻿@model List<projekt.Models.Zugskompositionen>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
+<script src="~/Scripts/JavaScript.js"></script>
+<script src="https://kit.fontawesome.com/7bdc781c6b.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" href="../Content/style.css">
 
@@ -10,6 +11,12 @@
 <h2>@ViewBag.Title</h2>
 
 <div class="content">
+
+    <div class="mode">
+        <button class="add-button" id="modeButton">
+            <i class="fa-solid fa-sun"></i>
+        </button>
+    </div>
 
     <div class="user-requests">
         <h4 class="text-center">Anfragen</h4>
