@@ -22,7 +22,7 @@ namespace projekt.Models
         public string Bahngesellschaft { get; set; }
         public string Loktyp { get; set; }
         public int Loknummer { get; set; }
-        public string Veroeffentlichung { get; set; 
+        public string Veroeffentlichung { get; set; }
 
         public Zugskompositionen(
             string paramImBesitz,
