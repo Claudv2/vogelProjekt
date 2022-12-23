@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
 </head>
-<body
+<body>
     <div>
         <h1>Profil</h1>
 
@@ -19,11 +19,61 @@
         </div>
 
         <div class="profile-buttons">
-            <button type="button" class="btn btn-secondary">Bearbeiten</button>
+            <button type="button" class="btn btn-secondary openEdiModalButton">Bearbeiten</button>
             <button type="button" class="btn btn-secondary">Logout</button>
         </div>
     </div>
-    
-   
+
+    <!-- Reserve Content Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="myModalLabel">Zugskomposition reservieren</h2>
+                    <p>Name der Zugskomposition</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>Aktuelles Passwort:</p>
+                        <p>pw...</p>
+                    </div>
+                    <div>
+                        <p>Benutzernanme:</p>
+                        <p>benutzername...</p>
+                    </div>
+                    <div>
+                        <p>Email:</p>
+                        <p>email...</p>
+                    </div>
+                    <div>
+                        <p>Neues Passwort:</p>
+                        <p>new pw...</p>
+                    </div>
+                    <div>
+                        <p>ConfirmPasswort:</p>
+                        <p>confirm pw...</p>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Speichern</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Reservieren</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.openEdiModalButton').click(function () {
+                $('#editProfileModal').modal('show');
+            });
+        });
+    </script>
+
 </body>
 </html>
