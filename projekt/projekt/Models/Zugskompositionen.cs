@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -10,10 +11,12 @@ namespace projekt.Models
     {
         public Guid id;
 
-        public Rollmaterial locke;
-        public Zugskompositionen(Rollmaterial locke1) { 
-            id = new Guid(); 
-            locke = locke1; 
+        public List<Rollmaterial> rollmaterial = new List<Rollmaterial>();
+        public string name;
+        public Zugskompositionen(Rollmaterial lok) { 
+            id = Guid.NewGuid();
+            rollmaterial.Add(lok);
+            name = lok.Bezeichung;
         }
         
     }
@@ -21,6 +24,8 @@ namespace projekt.Models
     public class Rollmaterial
     {
         public Guid id;
+
+        public string Type { get; set; }
         public string ImBesitz { get; set; }
         public double Kaufpreis { get; set; }
         public string Verkaeufer { get; set; }
@@ -33,9 +38,10 @@ namespace projekt.Models
         public string Bemerkung { get; set; }
         public string Bahngesellschaft { get; set; }
         public string Loktyp { get; set; }
-        public int Loknummer { get; set; }
+        public string Loknummer { get; set; }
         public string Veroeffentlichung { get; set;}
         public Rollmaterial(
+            string paramType,
             string paramImBesitz,
             double paramKaufpreis,
             string paramVerkaeufer,
@@ -48,10 +54,11 @@ namespace projekt.Models
             string paramFarbe,
             string paramBahngesellschaft,
             string paramLoktyp,
-            int paramLoknummer,
+            string paramLoknummer,
             string paramVeroeffentlichung
         ) { 
-            id = new Guid(); 
+            id = Guid.NewGuid(); 
+            Type = paramType;
             ImBesitz = paramImBesitz;
             Kaufpreis = paramKaufpreis;
             Verkaeufer = paramVerkaeufer;

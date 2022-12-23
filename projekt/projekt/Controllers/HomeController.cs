@@ -11,12 +11,14 @@ namespace projekt.Controllers
     {
         public ActionResult Index()
         {
-            var data = new List<Zugskompositionen> {
-                new Zugskompositionen(new Rollmaterial("2022", 698.00, "MBL", "", "LGB", "36685", "01", "Salonwagen", "Creme-Blau","Pullman Express", "RhB", "As", 1141, "2022")),
-                new Zugskompositionen(new Rollmaterial("2022", 698.00, "MBL", "", "LGB", "36685", "02", "Salonwagen", "Creme-Blau","Pullman Express", "RhB", "As", 1141, "2022"))
+            var zugskompositionen = new List<Zugskompositionen> {
+                new Zugskompositionen(new Rollmaterial("Lok", "2021", 288.00, "MBL", "", "LGB", "22222", "", "Dampflok", "Emma", "", "Lummerland", "", "E", "2019")),
             };
-               
-            return View(data);
+
+            zugskompositionen[0].rollmaterial.Add(new Rollmaterial("Personenwagen", "2022", 698.00, "MBL", "", "LGB", "36685", "01", "Salonwagen", "Pullman Express", "Creme-Blau", "RhB", "As", "1141", "2022"));
+            zugskompositionen[0].rollmaterial.Add(new Rollmaterial("Personenwagen", "2022", 698.00, "MBL", "", "LGB", "36685", "02", "Salonwagen", "Pullman Express", "Creme-Blau", "RhB", "As", "1141", "2022"));
+            zugskompositionen[0].rollmaterial.Add(new Rollmaterial("Güterwagen", "2022", 199.00, "MBL", "", "LGB", "44925", "", "Rungenwagen", "4 Achsen / Doppelrungen", "Braun", "RhB", "Sp-W", "8355", "2022"));
+            return View(zugskompositionen);
         }
             
         public ActionResult About()
@@ -29,18 +31,26 @@ namespace projekt.Controllers
         public ActionResult Rollmaterial()
         {
             // Retrieve data from tables and create list of MyModel objects
-            var data = new List<Rollmaterial> {
-                new Rollmaterial("2022", 698.00, "MBL", "", "LGB", "36685", "01", "Salonwagen", "Creme-Blau","Pullman Express", "RhB", "As", 1141, "2022"),
-                new Rollmaterial("2022", 698.00, "MBL", "", "LGB", "36685", "02", "Salonwagen", "Creme-Blau","Pullman Express", "RhB", "As", 1141, "2022")
+            var rollmaterial = new List<Rollmaterial> {
+                new Rollmaterial("Personenwagen", "2022", 698.00, "MBL", "", "LGB", "36685", "01", "Salonwagen", "Pullman Express", "Creme-Blau", "RhB", "As", "1141", "2022"),
+                new Rollmaterial("Personenwagen", "2022", 698.00, "MBL", "", "LGB", "36685", "02", "Salonwagen", "Pullman Express", "Creme-Blau", "RhB", "As", "1141", "2022"),
+                new Rollmaterial("Lok", "2021", 288.00, "MBL", "", "LGB", "22222", "", "Dampflok", "Emma", "", "Lummerland", "", "E", "2019"),
+                new Rollmaterial("Güterwagen", "2022", 199.00, "MBL", "", "LGB", "44925", "", "Rungenwagen", "4 Achsen / Doppelrungen", "Braun", "RhB", "Sp-W", "8355", "2022")
             };
 
-            return View(data);
+            return View(rollmaterial);
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult AddRollmaterial()
         {
-            return RedirectToAction("Index");
+            // Check if the form was submitted
+            if (Request.Form["formAddRollmaterial"] != null)
+            {
+                
+            }
+
+            return View();
         }
 
         public ActionResult Profile(int id)
