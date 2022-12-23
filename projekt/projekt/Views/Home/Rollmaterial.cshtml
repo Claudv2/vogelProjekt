@@ -12,18 +12,18 @@
 </div>
 
 <div class="add-data">
-    <button class="add-button openAddModalButton">
+    <button class="add-button openAddModalButton" id="addButton">
         <i class="fa-regular fa-plus"></i>
     </button>
 </div>
 
 <div class="mode">
-    <button class="add-button" id="mode">
+    <button class="add-button" id="modeButton">
         <i class="fa-solid fa-sun"></i>
     </button>
 </div>
 
-<table class="table">
+<table class="table" id="table">
     <tr>
         <th>Bezeichnung</th>
         <th>Farbe</th>
@@ -58,7 +58,7 @@
 </table>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,7 +70,7 @@
             <form id="formAddRollmaterial">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="typeEdit" class="input-text" type="text" placeholder="Typ" />
+                        <input id="typeEdit" class="input-text" type="text" placeholder="Typ" required/>
 
                         <input id="imBesitzEdit" class="input-text" type="text" placeholder="Im Besitz" />
 
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input id="herstellerEdit" class="input-text" type="text" placeholder="Hersteller" />
+                        <input id="herstellerEdit" class="input-text" type="text" placeholder="Hersteller" required/>
 
                         <input id="artnrEdit" class="input-text" type="text" placeholder="ArtNr" />
 
@@ -95,7 +95,7 @@
                     <div class="form-group">
                         <input id="farbeEdit" class="input-text" type="text" placeholder="Farbe" />
 
-                        <input id="bahngesellschaftEdit" class="input-text" type="text" placeholder="Bahngesellschaft" />
+                        <input id="bahngesellschaftEdit" class="input-text" type="text" placeholder="Bahngesellschaft" required/>
 
                         <input id="loktypEdit" class="input-text" type="text" placeholder="Loktyp" />
 
@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-default cancel-modal-button" data-dismiss="modal">Abbrechen</button>
+                        <button type="submit" class="btn btn-default cancel-modal-button dismissEdit" data-dismiss="modal">Abbrechen</button>
                         <button type="button" class="btn btn-default submitEdit" data-dismiss="modal">Save</button>
                     </div>
                 </div>
@@ -120,6 +120,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="myModalLabel">Rollmaterial hinzufügen</h2>
+                <h2 class="modal-title" id="myModalLabel">Zugskomposition bearbeiten/ Details</h2>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -127,43 +128,43 @@
             <form id="formAddRollmaterial">
                 <div class="modal-body">
                     <div class="form-group">
-                        <input id="type" class="input-text" type="text" placeholder="Typ" />
+                        <input id="typeAdd" class="input-text" type="text" placeholder="Typ" required/>
 
-                        <input id="imBesitz" class="input-text" type="text" placeholder="Im Besitz" />
+                        <input id="imBesitzAdd" class="input-text" type="text" placeholder="Im Besitz" />
 
-                        <input id="kaufpreis" class="input-text" type="text" placeholder="Kaufpreis" />
+                        <input id="kaufpreisAdd" class="input-text" type="text" placeholder="Kaufpreis" />
 
-                        <input id="verkaeufer" class="input-text" type="text" placeholder="Verkäufer" />
+                        <input id="verkaeuferAdd" class="input-text" type="text" placeholder="Verkäufer" />
 
-                        <input id="schaetzpreis" class="input-text" type="text" placeholder="Schätzpreis" />
+                        <input id="schaetzpreisAdd" class="input-text" type="text" placeholder="Schätzpreis" />
                     </div>
 
                     <div class="form-group">
-                        <input id="hersteller" class="input-text" type="text" placeholder="Hersteller" />
+                        <input id="herstellerAdd" class="input-text" type="text" placeholder="Hersteller" required/>
 
-                        <input id="artnr" class="input-text" type="text" placeholder="ArtNr" />
+                        <input id="artnrAdd" class="input-text" type="text" placeholder="ArtNr" />
 
-                        <input id="setnr" class="input-text" type="text" placeholder="SetNr" />
+                        <input id="setnrAdd" class="input-text" type="text" placeholder="SetNr" />
 
-                        <input id="bezeichnung" class="input-text" type="text" placeholder="Bezeichnung" />
+                        <input id="bezeichnungAdd" class="input-text" type="text" placeholder="Bezeichnung" />
 
-                        <input id="bemerkung" class="input-text" type="text" placeholder="Bemerkung" />
+                        <input id="bemerkungAdd" class="input-text" type="text" placeholder="Bemerkung" />
                     </div>
                     <div class="form-group">
-                        <input id="farbe" class="input-text" type="text" placeholder="Farbe" />
+                        <input id="farbeAdd" class="input-text" type="text" placeholder="Farbe" />
 
-                        <input id="bahngesellschaft" class="input-text" type="text" placeholder="Bahngesellschaft" />
+                        <input id="bahngesellschaftAdd" class="input-text" type="text" placeholder="Bahngesellschaft" required/>
 
-                        <input id="loktyp" class="input-text" type="text" placeholder="Loktyp" />
+                        <input id="loktypAdd" class="input-text" type="text" placeholder="Loktyp" />
 
-                        <input id="loknummer" class="input-text" type="text" placeholder="Loknummer" />
+                        <input id="loknummerAdd" class="input-text" type="text" placeholder="Loknummer" />
 
-                        <input id="veroeffentlichung" class="input-text" type="text" placeholder="Veröffentlichung" />
+                        <input id="veroeffentlichungAdd" class="input-text" type="text" placeholder="Veröffentlichung" />
                     </div>
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-default cancel-modal-button" data-dismiss="modal">Abbrechen</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                        <button type="submit" class="btn btn-default cancel-modal-button dismissAdd" data-dismiss="modal">Abbrechen</button>
+                        <button type="button" class="btn btn-default submitAdd" data-dismiss="modal">Save</button>
                     </div>
                 </div>
             </form>
@@ -196,9 +197,89 @@
 <script>
     $(document).ready(function () {
         var Id = null;
+
+        $('.submitAdd').click(function () {
+            var idAdd = Math.floor(Math.random() * 100)
+            var table = document.getElementById("table");
+            var row = table.insertRow();
+            row.setAttribute('id', idAdd);
+            var typeOutput = row.insertCell()
+            typeOutput.innerHTML = document.getElementById('typeAdd').value;
+            typeOutput.setAttribute('hidden', '')
+            typeOutput.setAttribute('id', 'typeOutput ' + idAdd)
+            var imBesitzOutput = row.insertCell(1)
+            imBesitzOutput.innerHTML = document.getElementById('imBesitzAdd').value;
+            imBesitzOutput.setAttribute('id', 'imBesitzOutput ' + idAdd)
+            var kaufpreisOutput = row.insertCell()
+            kaufpreisOutput.innerHTML = document.getElementById('kaufpreisAdd').value;
+            kaufpreisOutput.setAttribute('hidden', '')
+            kaufpreisOutput.setAttribute('id', 'kaufpreisOutput ' + idAdd)
+            var verkaeuferOutput = row.insertCell()
+            verkaeuferOutput.innerHTML = document.getElementById('verkaeuferAdd').value;
+            verkaeuferOutput.setAttribute('hidden', '')
+            verkaeuferOutput.setAttribute('id', 'verkaeuferOutput ' + idAdd)
+            var schaetzpreisOutput = row.insertCell()
+            schaetzpreisOutput.innerHTML = document.getElementById('schaetzpreisAdd').value
+            schaetzpreisOutput.setAttribute('hidden', '')
+            schaetzpreisOutput.setAttribute('id', 'schaetzpreisOutput ' + idAdd)
+            var herstellerOutput = row.insertCell(-1)
+            herstellerOutput.innerHTML = document.getElementById('herstellerAdd').value
+            herstellerOutput.setAttribute('id', 'herstellerOutput ' + idAdd)
+            var artNrOutput = row.insertCell()
+            artNrOutput.innerHTML = document.getElementById('artnrAdd').value
+            artNrOutput.setAttribute('hidden', '')
+            artNrOutput.setAttribute('id', 'artNrOutput ' + idAdd)
+            var setNrOutput = row.insertCell()
+            setNrOutput.innerHTML = document.getElementById('setnrAdd').value
+            setNrOutput.setAttribute('hidden', '')
+            setNrOutput.setAttribute('id', 'setNrOutput ' + idAdd)
+            var bezeichungOutput = row.insertCell(0)
+            console.log(document.getElementById('bezeichnungAdd').value)
+            bezeichungOutput.innerHTML = document.getElementById('bezeichnungAdd').value
+            bezeichungOutput.setAttribute('id', 'bezeichungOutput ' + idAdd)
+            var bemerkungOutput = row.insertCell()
+            bemerkungOutput.innerHTML = document.getElementById('bemerkungAdd').value
+            bemerkungOutput.setAttribute('hidden', '')
+            bemerkungOutput.setAttribute('id', 'bemerkungOutput ' + idAdd)
+            var farbeOutput = row.insertCell(1)
+            farbeOutput.innerHTML = document.getElementById('farbeAdd').value
+            farbeOutput.setAttribute('id', 'farbeOutput ' + idAdd)
+            var bahngesellschaftOutput = row.insertCell()
+            bahngesellschaftOutput.innerHTML = document.getElementById('bahngesellschaftAdd').value
+            bahngesellschaftOutput.setAttribute('hidden', '')
+            bahngesellschaftOutput.setAttribute('id', 'bahngesellschaftOutput ' + idAdd)
+            var loktypOutput = row.insertCell()
+            loktypOutput.innerHTML = document.getElementById('loktypAdd').value
+            loktypOutput.setAttribute('hidden', '')
+            loktypOutput.setAttribute('id', 'loktypOutput ' + idAdd)
+            var loknummerOutput = row.insertCell()
+            loknummerOutput.innerHTML = document.getElementById('loknummerAdd').value
+            loknummerOutput.setAttribute('hidden', '')
+            loknummerOutput.setAttribute('id', 'loknummerOutput ' + idAdd)
+            var veroeffentlichungOutput = row.insertCell()
+            veroeffentlichungOutput.innerHTML = document.getElementById('veroeffentlichungAdd').value
+            veroeffentlichungOutput.setAttribute('hidden', '')
+            veroeffentlichungOutput.setAttribute('id', 'veroeffentlichungOutput ' + idAdd)
+            var icons = row.insertCell()
+            var iconEdit = document.createElement('i');
+            iconEdit.setAttribute('class', 'fa-regular fa-pen-to-square')
+            var iconDelete = document.createElement('i');
+            iconDelete.setAttribute('class', 'fa-solid fa-trash-can')
+            var buttonEdit = document.createElement("button");
+            buttonEdit.setAttribute('class', 'icon-button openModalButton')
+            buttonEdit.setAttribute('data-id', idAdd)
+            buttonEdit.appendChild(iconEdit);
+            var buttonDelete = document.createElement("button");
+            buttonDelete.setAttribute('class', 'icon-button openDeleteModalButton')
+            buttonDelete.setAttribute('data-id', idAdd)
+            buttonDelete.appendChild(iconDelete);
+            icons.appendChild(buttonEdit)
+            icons.appendChild(buttonDelete)
+        });
+
         $('.openModalButton').click(function () {
             Id = $(this).data('id');
-            $('#myModal').modal('show');
+            $('#editModal').modal('show');
             var tr = document.getElementById(Id);
             console.log(document.getElementById('typeEdit'))
             console.log(document.getElementById('typeOutput ' + Id).innerText)
@@ -217,7 +298,6 @@
             document.getElementById('loktypEdit').setAttribute('value', document.getElementById('loktypOutput ' + Id).innerText)
             document.getElementById('loknummerEdit').setAttribute('value', document.getElementById('loknummerOutput ' + Id).innerText)
             document.getElementById('veroeffentlichungEdit').setAttribute('value', document.getElementById('veroeffentlichungOutput ' + Id).innerText)
-
         });
 
 
