@@ -13,7 +13,7 @@
 }
 
 <div class="titel">
-    <h1>Alle Zugskompositionen</h1>
+    <h1>@ViewBag.Title</h1>
 </div>
 
 <div class="add-data">
@@ -43,7 +43,7 @@
                 <td>@item.name</td>
                 <td>@item.rollmaterial.Count</td>
                 <td class="d-flex">
-                    <button class="icon-button openModalButton"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="icon-button openEditModalButton"><i class="fa-regular fa-pen-to-square"></i></button>
                     <button class="icon-button openReserveModalButton"><i class="fa-regular fa-bookmark"></i></button>
                     <button class="icon-button openDeleteModalButton"><i class="fa-solid fa-trash-can"></i></button>
                 </td>
@@ -52,8 +52,8 @@
     </table>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Edit Content Modal -->
+<div class="modal fade" id="editContentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -63,11 +63,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                Modal content goes here.
+                <table class="table">
+                    <tr class="table-head">
+                        <th>Bezeichnung</th>
+                        <th>Farbe</th>
+                        <th>Im Besitz</th>
+                        <th>Hersteller</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Bezeichung</td>
+                            <td>@item.Farbe</td>
+                            <td>@item.ImBesitz</td>
+                            <td>@item.Hersteller</td>
+                        </tr>
+                    }
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                <button type="button" class="btn btn-secondary">Speichern</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Speichern</button>
             </div>
         </div>
     </div>
@@ -84,23 +100,44 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table">
-                    <tr class="table-head">
-                        <th>Benutzer</th>
-                        <th>Zugname</th>
-                        <th>Anzahl Rollmaterialien</th>
-                        <th></th>
-                    </tr>
-                    <tr>
-                        <td><input class="input-text" type="text" /></td>
-                        <td><input class="input-text" type="text" /></td>
-                        <td><input class="input-text" type="text" /></td>
-                    </tr>
-                </table>
+                <div class="form-group">
+                    <input id="type" class="input-text" type="text" placeholder="Typ" />
+
+                    <input id="imBesitz" class="input-text" type="text" placeholder="Im Besitz" />
+
+                    <input id="kaufpreis" class="input-text" type="text" placeholder="Kaufpreis" />
+
+                    <input id="verkaeufer" class="input-text" type="text" placeholder="Verkäufer" />
+
+                    <input id="schaetzpreis" class="input-text" type="text" placeholder="Schätzpreis" />
+                </div>
+
+                <div class="form-group">
+                    <input id="hersteller" class="input-text" type="text" placeholder="Hersteller" />
+
+                    <input id="artnr" class="input-text" type="text" placeholder="ArtNr" />
+
+                    <input id="setnr" class="input-text" type="text" placeholder="SetNr" />
+
+                    <input id="bezeichnung" class="input-text" type="text" placeholder="Bezeichnung" />
+
+                    <input id="bemerkung" class="input-text" type="text" placeholder="Bemerkung" />
+                </div>
+                <div class="form-group">
+                    <input id="farbe" class="input-text" type="text" placeholder="Farbe" />
+
+                    <input id="bahngesellschaft" class="input-text" type="text" placeholder="Bahngesellschaft" />
+
+                    <input id="loktyp" class="input-text" type="text" placeholder="Loktyp" />
+
+                    <input id="loknummer" class="input-text" type="text" placeholder="Loknummer" />
+
+                    <input id="veroeffentlichung" class="input-text" type="text" placeholder="Veröffentlichung" />
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                <button type="button" class="btn btn-secondary">Hinzufügen</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hinzufügen</button>
             </div>
         </div>
     </div>
@@ -121,7 +158,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary cancel-modal-button" data-dismiss="modal">Abbrechen</button>
-                <button type="button" class="btn btn-secondary submit-modal-button">Ok</button>
+                <button type="button" class="btn btn-secondary submit-modal-button deleteItem" data-dismiss="modal">Ok</button>
             </div>
         </div>
     </div>
@@ -138,11 +175,19 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body datepicker">
+                <div>
+                    <p>Datum Von:</p>
+                    <input type="date" value="2022-12-22" />
+                </div>
+                <div>
+                    <p>Datum Bis:</p>
+                    <input type="date" value="2022-12-22" />
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
-                <button type="button" class="btn btn-secondary">Reservieren</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Reservieren</button>
             </div>
         </div>
     </div>
@@ -150,26 +195,26 @@
 
 <script>
     $(document).ready(function () {
-        $('.openModalButton').click(function () {
-            $('#myModal').modal('show');
+        $('.openEditModalButton').click(function () {
+            $('#editContentModal').modal('show');
         });
-    });
 
-    $(document).ready(function () {
         $('.openAddModalButton').click(function () {
             $('#addContentModal').modal('show');
         });
-    });
 
-    $(document).ready(function () {
-        $('.openDeleteModalButton').click(function () {
-            $('#deleteContentModal').modal('show');
-        });
-    });
-
-    $(document).ready(function () {
         $('.openReserveModalButton').click(function () {
             $('#reserveContentModal').modal('show');
         });
+
+        $('.openDeleteModalButton').click(function () {
+            Id = $(this).data('id');
+            $('#deleteContentModal').modal('show');
+        });
+
+        $('.deleteItem').click(function () {
+            document.getElementById(Id).setAttribute('hidden', "");
+        });
     });
+ 
 </script>
