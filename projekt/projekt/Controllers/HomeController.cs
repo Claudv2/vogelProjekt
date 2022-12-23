@@ -9,6 +9,7 @@ namespace projekt.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             var zugskompositionen = new List<Zugskompositionen> {
@@ -20,14 +21,14 @@ namespace projekt.Controllers
             zugskompositionen[0].rollmaterial.Add(new Rollmaterial("Güterwagen", "2022", 199.00, "MBL", "", "LGB", "44925", "", "Rungenwagen", "4 Achsen / Doppelrungen", "Braun", "RhB", "Sp-W", "8355", "2022"));
             return View(zugskompositionen);
         }
-            
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
+        [Authorize]
         public ActionResult Rollmaterial()
         {
             // Retrieve data from tables and create list of MyModel objects
@@ -42,6 +43,7 @@ namespace projekt.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult AddRollmaterial()
         {
             // Check if the form was submitted
@@ -52,7 +54,7 @@ namespace projekt.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult Profile(int id)
         {
             return View();
